@@ -127,7 +127,7 @@
     } catch(e) {}
   }
 
-  // --- ANTI-BOT SHIELD & SMART HUMAN TRIGGER ---
+  // --- ANTI-BOT SHIELD & BULLETPROOF EXIT-INTENT TRIGGER ---
   function isBotOrAutomated() {
     if (navigator.webdriver) return true;
     const ua = (navigator.userAgent || '').toLowerCase();
@@ -135,14 +135,11 @@
     return botPatterns.test(ua);
   }
 
-  let modalTriggered = false;
+  let exitIntentFired = false;
 
-  function tryTriggerModal(triggerType) {
-    if (modalTriggered || isBotOrAutomated()) return;
-    if (sessionStorage.getItem('voucher_dismissed')) return;
-
-    modalTriggered = true;
-    sessionStorage.setItem('voucher_dismissed', '1');
+  function triggerExitIntent() {
+    if (exitIntentFired || isBotOrAutomated()) return;
+    exitIntentFired = true;
     openModal();
   }
 
@@ -162,29 +159,22 @@
       }
     }
 
-    // A. Desktop Exit-Intent
-    document.addEventListener('mouseleave', (e) => {
-      if (e.clientY <= 10) {
-        tryTriggerModal('exit_intent');
+    // 1. Desktop Exit-Intent: Fires instantly when cursor heads towards browser tabs / close button
+    const handleExit = (e) => {
+      if (e.clientY <= 35 || (!e.relatedTarget && e.clientY <= 50)) {
+        triggerExitIntent();
       }
-    });
+    };
 
-    // B. Scroll Trigger
-    const pageStartTime = Date.now();
+    document.addEventListener('mouseout', handleExit);
+    document.documentElement.addEventListener('mouseleave', handleExit);
+
+    // 2. Mobile / Desktop Sticky Voucher Bar on Scroll
     const stickyBar = document.getElementById('stickyVoucherBar');
-
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY || window.pageYOffset;
-      if (stickyBar && scrollY > 250) {
+      if (stickyBar && scrollY > 200) {
         stickyBar.classList.remove('hidden');
-      }
-
-      const elapsedSec = (Date.now() - pageStartTime) / 1000;
-      if (elapsedSec < 8) return;
-
-      const totalScrollable = document.documentElement.scrollHeight - window.innerHeight;
-      if (totalScrollable > 0 && (scrollY / totalScrollable) >= 0.45) {
-        tryTriggerModal('scroll_depth');
       }
     }, { passive: true });
   });
