@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Creative 2 - Label vs Reality Comparison</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: radial-gradient(circle at 50% 0%, #11385f 0%, #061527 65%, #030a14 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #ffffff;
+      padding: 60px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .bg-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(64, 175, 228, 0.12);
+      border: 1.5px solid rgba(64, 175, 228, 0.4);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #40afe4;
+      align-self: flex-start;
+    }
+
+    .header-section {
+      margin-top: 22px;
+      z-index: 1;
+    }
+
+    .main-title {
+      font-size: 52px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      font-size: 22px;
+      color: #9cb3c9;
+      margin-top: 12px;
+      font-weight: 500;
+    }
+
+    /* Comparison Grid */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      margin-top: 30px;
+      z-index: 1;
+    }
+
+    /* Column Red (Unverified) */
+    .col-unverified {
+      background: rgba(45, 14, 22, 0.55);
+      border: 1.5px solid rgba(239, 68, 68, 0.35);
+      border-radius: 20px;
+      padding: 30px 26px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .col-header-red {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f87171;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    /* Column Green/Cyan (Audited) */
+    .col-audited {
+      background: rgba(14, 45, 75, 0.7);
+      border: 1.5px solid rgba(64, 175, 228, 0.5);
+      border-radius: 20px;
+      padding: 30px 26px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 35px rgba(64, 175, 228, 0.15);
+      position: relative;
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -14px;
+      right: 20px;
+      background: linear-gradient(90deg, #10b981, #059669);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 4px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+
+    .col-header-cyan {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #40afe4;
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(64, 175, 228, 0.3);
+    }
+
+    .points-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .point-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .point-item .status-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .icon-red {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+    }
+
+    .icon-green {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+
+    .point-text h5 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .point-text p {
+      font-size: 14px;
+      color: #9cb3c9;
+      line-height: 1.4;
+    }
+
+    /* Footer Section */
+    .footer-section {
+      background: linear-gradient(90deg, rgba(14,66,113,0.8), rgba(7,28,50,0.9));
+      border: 1.5px solid rgba(64, 175, 228, 0.35);
+      border-radius: 22px;
+      padding: 24px 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      z-index: 1;
+    }
+
+    .voucher-info .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #40afe4;
+      letter-spacing: 0.12em;
+    }
+
+    .voucher-info .code-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .code-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 8px;
+    }
+
+    .discount-tag {
+      font-size: 17px;
+      font-weight: 800;
+      color: #34d399;
+    }
+
+    .cta-button {
+      background: linear-gradient(90deg, #40afe4 0%, #7cc9ee 100%);
+      color: #061527;
+      font-size: 17px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 18px 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 25px rgba(64, 175, 228, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <div>
+    <div class="top-badge">
+      <span>????</span> 2026 Analytical Quality Monograph
+    </div>
+
+    <div class="header-section">
+      <h1 class="main-title">
+        Generic Label Claims vs.<br>
+        Analytical Reality
+      </h1>
+      <p class="subtitle">Why a 99% label number doesn't prove molecular purity.</p>
+    </div>
+
+    <div class="comparison-grid">
+      
+      <!-- Left Column: Unverified -->
+      <div class="col-unverified">
+        <div class="col-header-red">
+          <span>?</span> Unverified Suppliers
+        </div>
+        <ul class="points-list">
+          <li class="point-item">
+            <div class="status-icon icon-red">?</div>
+            <div class="point-text">
+              <h5>Photocopied Generic COAs</h5>
+              <p>Reused certificates with no verifiable lot correlation.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-red">?</div>
+            <div class="point-text">
+              <h5>No Mass Spectrometry</h5>
+              <p>Unknown molecular weight and unconfirmed identity.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-red">?</div>
+            <div class="point-text">
+              <h5>Salt / Filler Powder Weight</h5>
+              <p>10 mg powder often contains less than 6 mg active sequence.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-red">?</div>
+            <div class="point-text">
+              <h5>Unregulated Imports</h5>
+              <p>Zero domestic laboratory accountability or testing trail.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Column: Audited -->
+      <div class="col-audited">
+        <div class="popular-tag">Verified Standard</div>
+        <div class="col-header-cyan">
+          <span>???</span> 2026 Audited Benchmark
+        </div>
+        <ul class="points-list">
+          <li class="point-item">
+            <div class="status-icon icon-green">?</div>
+            <div class="point-text">
+              <h5>Independent 3rd-Party HPLC</h5>
+              <p>Certified &ge; 99% pure with full absorption chromatograms.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-green">?</div>
+            <div class="point-text">
+              <h5>Quadrupole LC-MS Tested</h5>
+              <p>Confirmed molecular identity matching sequence data.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-green">?</div>
+            <div class="point-text">
+              <h5>Net Active Content Certified</h5>
+              <p>Guaranteed active compound mass, not bulk binder.</p>
+            </div>
+          </li>
+          <li class="point-item">
+            <div class="status-icon icon-green">?</div>
+            <div class="point-text">
+              <h5>Domestic Canadian Supply</h5>
+              <p>Lot-matched batch verification with domestic shipping.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Voucher & CTA -->
+  <div class="footer-section">
+    <div class="voucher-info">
+      <div class="eyebrow">Verified Canadian Allocation</div>
+      <div class="code-row">
+        <span class="code-badge">PURE20</span>
+        <span class="discount-tag">20% Research Credit</span>
+      </div>
+    </div>
+    <div class="cta-button">
+      <span>Read Full Guide</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+
+</body>
+</html>
