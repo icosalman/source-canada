@@ -127,7 +127,7 @@
     } catch(e) {}
   }
 
-  // --- ANTI-BOT SHIELD & BULLETPROOF EXIT-INTENT TRIGGER ---
+  // --- ANTI-BOT SHIELD & SMART DUAL-TRIGGER (SCROLL 50% + EXIT-INTENT) ---
   function isBotOrAutomated() {
     if (navigator.webdriver) return true;
     const ua = (navigator.userAgent || '').toLowerCase();
@@ -135,12 +135,21 @@
     return botPatterns.test(ua);
   }
 
-  let exitIntentFired = false;
+  let scrollModalFired = false;
+  let exitModalFired = false;
 
-  function triggerExitIntent() {
-    if (exitIntentFired || isBotOrAutomated()) return;
-    exitIntentFired = true;
-    openModal();
+  function triggerModal(type) {
+    if (isBotOrAutomated()) return;
+    
+    if (type === 'scroll') {
+      if (scrollModalFired) return;
+      scrollModalFired = true;
+      openModal();
+    } else if (type === 'exit') {
+      if (exitModalFired) return;
+      exitModalFired = true;
+      openModal();
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -159,22 +168,37 @@
       }
     }
 
-    // 1. Desktop Exit-Intent: Fires instantly when cursor heads towards browser tabs / close button
+    // 1. Desktop Exit-Intent: Fires when mouse moves towards browser top tabs / close button
     const handleExit = (e) => {
       if (e.clientY <= 35 || (!e.relatedTarget && e.clientY <= 50)) {
-        triggerExitIntent();
+        triggerModal('exit');
       }
     };
-
     document.addEventListener('mouseout', handleExit);
     document.documentElement.addEventListener('mouseleave', handleExit);
 
-    // 2. Mobile / Desktop Sticky Voucher Bar on Scroll
+    // 2. Scroll Depth (50% scroll) & Mobile Sticky Bar
+    const pageStartTime = Date.now();
     const stickyBar = document.getElementById('stickyVoucherBar');
+
     window.addEventListener('scroll', () => {
       const scrollY = window.scrollY || window.pageYOffset;
+      
+      // Sticky bottom bar shows smoothly after 200px scroll
       if (stickyBar && scrollY > 200) {
         stickyBar.classList.remove('hidden');
+      }
+
+      // 50% Scroll Depth Trigger (requires at least 4s on page so instant bot crawlers are ignored)
+      const elapsed = Date.now() - pageStartTime;
+      if (elapsed > 4000) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (docHeight > 0) {
+          const scrollPercent = scrollY / docHeight;
+          if (scrollPercent >= 0.50) {
+            triggerModal('scroll');
+          }
+        }
       }
     }, { passive: true });
   });
