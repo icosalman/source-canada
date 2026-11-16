@@ -2,45 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Reels Creative 1 - Chromatogram Hook</title>
+  <title>Ad 3 - Reels Vertical Shipping</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 1080px;
       height: 1920px;
-      background-color: #030b17;
+      position: relative;
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: #ffffff;
-      position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 100px 70px 140px 70px;
+      padding: 110px 70px 140px 70px;
     }
     
-    /* Background Image with Cinematic Grading */
-    .bg-image {
+    .bg-photo {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('hplc_lab_reels.png');
+      background-image: url('packaging_delivery.jpg');
       background-size: cover;
       background-position: center;
-      filter: brightness(0.42) contrast(1.15);
+      filter: brightness(0.38) contrast(1.2);
       z-index: 0;
     }
 
     .vignette {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(6,21,39,0.4) 0%, rgba(3,11,23,0.92) 80%);
+      background: radial-gradient(circle at 50% 50%, rgba(6,21,39,0.3) 0%, rgba(3,11,23,0.95) 85%);
       z-index: 1;
     }
 
-    .content-wrap {
+    .content-top {
       position: relative;
       z-index: 2;
     }
@@ -59,62 +57,73 @@
       text-transform: uppercase;
       color: #40afe4;
       backdrop-filter: blur(12px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
-    .hook-headline {
+    .hook-title {
       font-size: 74px;
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.03em;
-      margin-top: 50px;
+      margin-top: 40px;
       color: #ffffff;
       text-shadow: 0 4px 30px rgba(0,0,0,0.8);
     }
 
-    .hook-headline .cyan-span {
+    .hook-title .highlight {
       color: #40afe4;
       text-decoration: underline;
       text-decoration-color: rgba(64,175,228,0.5);
       text-underline-offset: 12px;
     }
 
-    .middle-card {
-      margin-top: 60px;
-      background: rgba(14, 40, 68, 0.75);
-      border: 1.5px solid rgba(64, 175, 228, 0.4);
-      border-radius: 28px;
-      padding: 40px 44px;
-      backdrop-filter: blur(16px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    /* 3 Clean Shipping Benefit Cards */
+    .benefit-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin-top: 55px;
     }
 
-    .card-label {
-      font-size: 16px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #34d399;
+    .b-card {
+      background: rgba(14, 40, 68, 0.75);
+      border: 1.5px solid rgba(64, 175, 228, 0.35);
+      border-radius: 22px;
+      padding: 26px 32px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
-    .middle-card p {
-      font-size: 26px;
-      line-height: 1.45;
-      color: #e2e8f0;
-      margin-top: 16px;
-      font-weight: 500;
+    .b-icon {
+      font-size: 34px;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(64, 175, 228, 0.18);
+      border: 1px solid rgba(64, 175, 228, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    .middle-card strong {
-      color: #ffffff;
+    .b-text h4 {
+      font-size: 24px;
       font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
     }
 
-    /* Bottom Reel CTA */
-    .bottom-section {
+    .b-text p {
+      font-size: 19px;
+      color: #9cb3c9;
+      line-height: 1.35;
+    }
+
+    /* Bottom Section */
+    .content-bottom {
       position: relative;
       z-index: 2;
     }
@@ -181,41 +190,59 @@
   </style>
 </head>
 <body>
-  <div class="bg-image"></div>
+  <div class="bg-photo"></div>
   <div class="vignette"></div>
 
-  <div class="content-wrap">
+  <div class="content-top">
     <div class="top-badge">
-      <span>????</span> Canadian Research Audit • 2026
+      <span>????</span> Canada Domestic Delivery
     </div>
 
-    <h1 class="hook-headline">
-      Buying Research Sequences?<br>
-      Watch the <span class="cyan-span">Chromatogram</span>,<br>
-      Not the Label.
+    <h1 class="hook-title">
+      Tired of Border Delays?<br>
+      Order <span class="highlight">Domestic Canada.</span>
     </h1>
 
-    <div class="middle-card">
-      <div class="card-label">
-        <span>??</span> Analytical Lab Finding
+    <div class="benefit-cards">
+      
+      <div class="b-card">
+        <div class="b-icon">??</div>
+        <div class="b-text">
+          <h4>2-3 Day Express Tracked</h4>
+          <p>Direct domestic delivery across all Canadian provinces via Canada Post.</p>
+        </div>
       </div>
-      <p>
-        A <strong>99% purity claim</strong> on a generic label means nothing without a <strong>batch-matched HPLC chromatogram</strong> and quadrupole mass spectrometry confirmation.
-      </p>
+
+      <div class="b-card">
+        <div class="b-icon">???</div>
+        <div class="b-text">
+          <h4>No Customs Seizures</h4>
+          <p>100% domestic Canadian inventory. Zero international border risk.</p>
+        </div>
+      </div>
+
+      <div class="b-card">
+        <div class="b-icon">??</div>
+        <div class="b-text">
+          <h4>Discreet Foam Packaging</h4>
+          <p>Tamper-evident, temperature-protected, completely plain box.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="bottom-section">
+  <div class="content-bottom">
     <div class="voucher-pill">
       <div class="text-col">
-        <span class="title">Allocated Reader Credit</span>
+        <span class="title">First Order Research Credit</span>
         <span class="code">PURE20</span>
       </div>
-      <span class="tag">20% Research Credit</span>
+      <span class="tag">20% OFF</span>
     </div>
 
     <div class="cta-bar">
-      <span>Read 2026 Monograph</span>
+      <span>Shop Canadian Stock</span>
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </div>
   </div>
