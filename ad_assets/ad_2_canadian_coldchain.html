@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ad 2 - Canadian Cold Chain</title>
+  <title>Ad 2 - Domestic vs International Transit Report</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
     body {
@@ -16,15 +16,16 @@
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       background: url('visual_canadian_coldchain.jpg') center center / cover no-repeat;
+      filter: brightness(0.9);
     }
     .overlay-vignette {
       position: absolute;
       top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(180deg, 
-        rgba(6, 21, 35, 0.90) 0%, 
-        rgba(6, 21, 35, 0.20) 28%, 
-        rgba(6, 21, 35, 0.25) 55%, 
-        rgba(6, 21, 35, 0.94) 80%, 
+        rgba(6, 21, 35, 0.92) 0%, 
+        rgba(6, 21, 35, 0.25) 28%, 
+        rgba(6, 21, 35, 0.35) 55%, 
+        rgba(6, 21, 35, 0.95) 80%, 
         rgba(6, 21, 35, 1) 100%);
     }
     .content-container {
@@ -32,7 +33,7 @@
       z-index: 10;
       width: 100%;
       height: 100%;
-      padding: 60px 65px;
+      padding: 65px 70px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -45,7 +46,7 @@
     .top-badge-row {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
     .badge-maple {
       display: inline-flex;
@@ -57,9 +58,9 @@
       padding: 10px 24px;
       border-radius: 9999px;
       color: #fca5a5;
-      font-size: 21px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
     .badge-secondary {
@@ -71,7 +72,7 @@
       padding: 10px 20px;
       border-radius: 9999px;
       color: #ffffff;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 600;
     }
     .main-title {
@@ -79,14 +80,21 @@
       font-weight: 900;
       line-height: 1.15;
       color: #ffffff;
-      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.95);
       letter-spacing: -0.5px;
     }
     .main-title .gold-highlight {
-      color: #38bdf8;
-      background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+      color: #7dd3fc;
+      background: linear-gradient(135deg, #bae6fd 0%, #38bdf8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+    .subtitle-text {
+      font-size: 23px;
+      color: #cbd5e1;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-top: 4px;
     }
     .bottom-zone {
       display: flex;
@@ -99,11 +107,11 @@
       gap: 16px;
     }
     .benefit-card {
-      background: rgba(8, 26, 43, 0.88);
+      background: rgba(8, 26, 43, 0.90);
       border: 1.5px solid rgba(125, 211, 252, 0.3);
       backdrop-filter: blur(20px);
       border-radius: 20px;
-      padding: 20px 22px;
+      padding: 22px 24px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -125,55 +133,26 @@
       color: #bae6fd;
       font-weight: 500;
     }
-    .offer-card {
-      background: linear-gradient(135deg, rgba(14, 116, 144, 0.35) 0%, rgba(8, 51, 68, 0.4) 100%);
-      border: 2px solid rgba(56, 189, 248, 0.6);
+    .summary-card {
+      background: rgba(8, 26, 43, 0.92);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
       backdrop-filter: blur(24px);
-      border-radius: 24px;
-      padding: 24px 32px;
+      border-radius: 22px;
+      padding: 22px 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 12px 35px rgba(2, 132, 199, 0.3);
     }
-    .offer-left {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .offer-tag {
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #38bdf8;
-    }
-    .offer-text {
-      font-size: 26px;
+    .summary-title {
+      font-size: 22px;
       font-weight: 800;
       color: #ffffff;
     }
-    .coupon-box {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: #0284c7;
-      padding: 12px 26px;
-      border-radius: 16px;
-      border: 2px dashed #bae6fd;
-    }
-    .coupon-label {
-      font-size: 16px;
-      font-weight: 700;
-      color: #e0f2fe;
-      text-transform: uppercase;
-    }
-    .coupon-code {
-      font-size: 32px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 2px;
-      font-family: monospace;
+    .summary-sub {
+      font-size: 17px;
+      color: #7dd3fc;
+      font-weight: 600;
+      margin-top: 2px;
     }
     .cta-bar {
       background: linear-gradient(90deg, #38bdf8 0%, #0284c7 100%);
@@ -181,7 +160,7 @@
       font-size: 24px;
       font-weight: 900;
       text-align: center;
-      padding: 20px;
+      padding: 22px;
       border-radius: 18px;
       text-transform: uppercase;
       letter-spacing: 1.2px;
@@ -200,13 +179,14 @@
   <div class="content-container">
     <div class="header-zone">
       <div class="top-badge-row">
-        <div class="badge-maple">🇨🇦 100% INVENTORY IN CANADA</div>
-        <div class="badge-secondary">Zero Customs Delays</div>
+        <div class="badge-maple">🇨🇦 DOMESTIC VS BORDER TRANSIT</div>
+        <div class="badge-secondary">Supply Chain Analysis</div>
       </div>
       <h1 class="main-title">
-        Tired of 3-Week Border Delays?<br>
-        <span class="gold-highlight">Order Pure Domestic.</span>
+        Why Domestic Routing Eliminates<br>
+        <span class="gold-highlight">Border Delays & Quality Loss</span>
       </h1>
+      <p class="subtitle-text">Comparing international cross-border wait times against regional Canadian cold-chain distribution networks.</p>
     </div>
 
     <div class="bottom-zone">
@@ -215,20 +195,20 @@
           <div class="benefit-icon">🚀</div>
           <div>
             <div class="benefit-text-title">Priority Xpresspost</div>
-            <div class="benefit-text-desc">2 to 3 days to any Canadian address</div>
+            <div class="benefit-text-desc">2 to 3 days to any Canadian province</div>
           </div>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">❄️</div>
           <div>
             <div class="benefit-text-title">Cold-Pack Stability</div>
-            <div class="benefit-text-desc">Insulated transit against temperature shifts</div>
+            <div class="benefit-text-desc">Maintains thermal integrity throughout transit</div>
           </div>
         </div>
         <div class="benefit-card">
           <div class="benefit-icon">🛡️</div>
           <div>
-            <div class="benefit-text-title">Zero Customs Risk</div>
+            <div class="benefit-text-title">Zero Customs Delays</div>
             <div class="benefit-text-desc">Domestic routes never cross international borders</div>
           </div>
         </div>
@@ -236,24 +216,21 @@
           <div class="benefit-icon">📦</div>
           <div>
             <div class="benefit-text-title">Discreet Plain Packaging</div>
-            <div class="benefit-text-desc">Total privacy guaranteed on every order</div>
+            <div class="benefit-text-desc">Total privacy guaranteed on all shipments</div>
           </div>
         </div>
       </div>
 
-      <div class="offer-card">
-        <div class="offer-left">
-          <div class="offer-tag">EXCLUSIVE CANADIAN DISCOUNT</div>
-          <div class="offer-text">Save 20% On Your Order Today</div>
+      <div class="summary-card">
+        <div>
+          <div class="summary-title">Read the Complete 2026 Canadian Logistics Review</div>
+          <div class="summary-sub">Source Canada • Independent Research & Distribution Digest</div>
         </div>
-        <div class="coupon-box">
-          <span class="coupon-label">CODE:</span>
-          <span class="coupon-code">PURE20</span>
-        </div>
+        <div style="font-size: 28px;">📖</div>
       </div>
 
       <div class="cta-bar">
-        Shop In-Stock Domestic Catalog ➔
+        Read Full Research Report ➔
       </div>
     </div>
   </div>
