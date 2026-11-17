@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ad 2 - Canadian Cold Chain</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body {
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      background: #081a26;
+      position: relative;
+    }
+    .bg-image {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('visual_canadian_coldchain.jpg') center center / cover no-repeat;
+    }
+    .overlay-vignette {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, 
+        rgba(6, 21, 35, 0.90) 0%, 
+        rgba(6, 21, 35, 0.20) 28%, 
+        rgba(6, 21, 35, 0.25) 55%, 
+        rgba(6, 21, 35, 0.94) 80%, 
+        rgba(6, 21, 35, 1) 100%);
+    }
+    .content-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      padding: 60px 65px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .header-zone {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .top-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .badge-maple {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(220, 38, 38, 0.2);
+      border: 1.5px solid rgba(239, 68, 68, 0.6);
+      backdrop-filter: blur(16px);
+      padding: 10px 24px;
+      border-radius: 9999px;
+      color: #fca5a5;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+    .badge-secondary {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      padding: 10px 20px;
+      border-radius: 9999px;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .main-title {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #ffffff;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+      letter-spacing: -0.5px;
+    }
+    .main-title .gold-highlight {
+      color: #38bdf8;
+      background: linear-gradient(135deg, #7dd3fc 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bottom-zone {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .benefit-card {
+      background: rgba(8, 26, 43, 0.88);
+      border: 1.5px solid rgba(125, 211, 252, 0.3);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .benefit-icon {
+      font-size: 34px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .benefit-text-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+    .benefit-text-desc {
+      font-size: 17px;
+      color: #bae6fd;
+      font-weight: 500;
+    }
+    .offer-card {
+      background: linear-gradient(135deg, rgba(14, 116, 144, 0.35) 0%, rgba(8, 51, 68, 0.4) 100%);
+      border: 2px solid rgba(56, 189, 248, 0.6);
+      backdrop-filter: blur(24px);
+      border-radius: 24px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 35px rgba(2, 132, 199, 0.3);
+    }
+    .offer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .offer-tag {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #38bdf8;
+    }
+    .offer-text {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .coupon-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #0284c7;
+      padding: 12px 26px;
+      border-radius: 16px;
+      border: 2px dashed #bae6fd;
+    }
+    .coupon-label {
+      font-size: 16px;
+      font-weight: 700;
+      color: #e0f2fe;
+      text-transform: uppercase;
+    }
+    .coupon-code {
+      font-size: 32px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 2px;
+      font-family: monospace;
+    }
+    .cta-bar {
+      background: linear-gradient(90deg, #38bdf8 0%, #0284c7 100%);
+      color: #041b2d;
+      font-size: 24px;
+      font-weight: 900;
+      text-align: center;
+      padding: 20px;
+      border-radius: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="overlay-vignette"></div>
+
+  <div class="content-container">
+    <div class="header-zone">
+      <div class="top-badge-row">
+        <div class="badge-maple">🇨🇦 100% INVENTORY IN CANADA</div>
+        <div class="badge-secondary">Zero Customs Delays</div>
+      </div>
+      <h1 class="main-title">
+        Tired of 3-Week Border Delays?<br>
+        <span class="gold-highlight">Order Pure Domestic.</span>
+      </h1>
+    </div>
+
+    <div class="bottom-zone">
+      <div class="benefit-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🚀</div>
+          <div>
+            <div class="benefit-text-title">Priority Xpresspost</div>
+            <div class="benefit-text-desc">2 to 3 days to any Canadian address</div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">❄️</div>
+          <div>
+            <div class="benefit-text-title">Cold-Pack Stability</div>
+            <div class="benefit-text-desc">Insulated transit against temperature shifts</div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛡️</div>
+          <div>
+            <div class="benefit-text-title">Zero Customs Risk</div>
+            <div class="benefit-text-desc">Domestic routes never cross international borders</div>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📦</div>
+          <div>
+            <div class="benefit-text-title">Discreet Plain Packaging</div>
+            <div class="benefit-text-desc">Total privacy guaranteed on every order</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-card">
+        <div class="offer-left">
+          <div class="offer-tag">EXCLUSIVE CANADIAN DISCOUNT</div>
+          <div class="offer-text">Save 20% On Your Order Today</div>
+        </div>
+        <div class="coupon-box">
+          <span class="coupon-label">CODE:</span>
+          <span class="coupon-code">PURE20</span>
+        </div>
+      </div>
+
+      <div class="cta-bar">
+        Shop In-Stock Domestic Catalog ➔
+      </div>
+    </div>
+  </div>
+</body>
+</html>
