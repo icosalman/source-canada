@@ -113,12 +113,21 @@
         targetUrl.searchParams.set(key, value);
       });
 
-      // Default UTM fallbacks if direct access
+      // Exact client requested parameters (populated by Meta ad click or default fallback)
       if (!targetUrl.searchParams.has('utm_source')) {
-        targetUrl.searchParams.set('utm_source', 'bioresearch_pro');
+        targetUrl.searchParams.set('utm_source', '{{site_source_name}}');
       }
       if (!targetUrl.searchParams.has('utm_medium')) {
         targetUrl.searchParams.set('utm_medium', 'paid');
+      }
+      if (!targetUrl.searchParams.has('utm_campaign')) {
+        targetUrl.searchParams.set('utm_campaign', '{{campaign.name}}');
+      }
+      if (!targetUrl.searchParams.has('utm_term')) {
+        targetUrl.searchParams.set('utm_term', '{{adset.name}}');
+      }
+      if (!targetUrl.searchParams.has('utm_content')) {
+        targetUrl.searchParams.set('utm_content', '{{ad.name}}');
       }
       
       // Maintain discount voucher code
@@ -128,7 +137,7 @@
 
       window.open(targetUrl.toString(), '_blank', 'noopener,noreferrer');
     } catch(e) {
-      window.open("https://peptidesourcecanada.is/?coupon=PURE20", '_blank', 'noopener,noreferrer');
+      window.open("https://peptidesourcecanada.is/?utm_source={{site_source_name}}&utm_medium=paid&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}&coupon=PURE20", '_blank', 'noopener,noreferrer');
     }
   }
 
