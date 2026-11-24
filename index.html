@@ -88,7 +88,7 @@
 </div>
 
 <script>
-  const TARGET_STORE_B64 = "aHR0cHM6Ly9wZXB0aWRlc291cmNlY2FuYWRhLmlzLz91dG1fc291cmNlPWJpb3Jlc2VhcmNoX3BybyZjb3Vwb249UFVSRTIw";
+  const TARGET_STORE_BASE = "aHR0cHM6Ly9wZXB0aWRlc291cmNlY2FuYWRhLmlzLw==";
 
   function copyCoupon(code, btn) {
     navigator.clipboard.writeText(code).then(() => {
@@ -120,9 +120,32 @@
       clarity('event', 'StoreRedirectClicked');
     }
     try {
-      const url = atob(TARGET_STORE_B64);
-      window.open(url, '_blank', 'noopener,noreferrer');
-    } catch(e) {}
+      const baseUrl = atob(TARGET_STORE_BASE);
+      const targetUrl = new URL(baseUrl);
+      
+      // Pass-through all incoming UTMs and tracking parameters from ad click
+      const incomingParams = new URLSearchParams(window.location.search);
+      incomingParams.forEach((value, key) => {
+        targetUrl.searchParams.set(key, value);
+      });
+
+      // Default UTM fallbacks if direct access
+      if (!targetUrl.searchParams.has('utm_source')) {
+        targetUrl.searchParams.set('utm_source', 'bioresearch_pro');
+      }
+      if (!targetUrl.searchParams.has('utm_medium')) {
+        targetUrl.searchParams.set('utm_medium', 'paid');
+      }
+      
+      // Maintain discount voucher code
+      if (!targetUrl.searchParams.has('coupon')) {
+        targetUrl.searchParams.set('coupon', 'PURE20');
+      }
+
+      window.open(targetUrl.toString(), '_blank', 'noopener,noreferrer');
+    } catch(e) {
+      window.open("https://peptidesourcecanada.is/?coupon=PURE20", '_blank', 'noopener,noreferrer');
+    }
   }
 
   document.addEventListener('DOMContentLoaded', () => {
