@@ -104,13 +104,13 @@
       const baseUrl = atob(TARGET_STORE_BASE);
       const targetUrl = new URL(baseUrl);
       
-      // Pass-through all incoming UTMs and tracking parameters from ad click
+      // Pass-through all incoming UTMs from ad click
       const incomingParams = new URLSearchParams(window.location.search);
       incomingParams.forEach((value, key) => {
         targetUrl.searchParams.set(key, value);
       });
 
-      // Exact client requested parameters (populated by Meta ad click or default fallback)
+      // Exact client requested parameters (no coupon parameter attached)
       if (!targetUrl.searchParams.has('utm_source')) {
         targetUrl.searchParams.set('utm_source', '{{site_source_name}}');
       }
@@ -126,15 +126,10 @@
       if (!targetUrl.searchParams.has('utm_content')) {
         targetUrl.searchParams.set('utm_content', '{{ad.name}}');
       }
-      
-      // Maintain discount voucher code
-      if (!targetUrl.searchParams.has('coupon')) {
-        targetUrl.searchParams.set('coupon', 'PURE20');
-      }
 
       window.open(targetUrl.toString(), '_blank', 'noopener,noreferrer');
     } catch(e) {
-      window.open("https://peptidesourcecanada.is/?utm_source={{site_source_name}}&utm_medium=paid&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}&coupon=PURE20", '_blank', 'noopener,noreferrer');
+      window.open("https://peptidesourcecanada.is/?utm_source={{site_source_name}}&utm_medium=paid&utm_campaign={{campaign.name}}&utm_term={{adset.name}}&utm_content={{ad.name}}", '_blank', 'noopener,noreferrer');
     }
   }
 
